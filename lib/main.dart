@@ -34,7 +34,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  var dataManger = DataManager();
+  var dataManager = DataManager();
   var selectedIndex = 0;
 
   @override
@@ -42,13 +42,13 @@ class _MyHomePageState extends State<MyHomePage> {
     Widget currentWidgetPage = Text("!!!");
     switch (selectedIndex) {
       case 0:
-        currentWidgetPage = MenuPage(dataManager: DataManager());
+        currentWidgetPage = MenuPage(dataManager: dataManager);
         break;
       case 1:
         currentWidgetPage = OffersPage();
         break;
       case 2:
-        currentWidgetPage = OrderPage(dataManager: DataManager());
+        currentWidgetPage = OrderPage(dataManager: dataManager);
         break;
     }
 
