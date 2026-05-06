@@ -22,7 +22,7 @@ class _OrderPageState extends State<OrderPage> {
     } else {
       return Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Column(
+        child: ListView(
           children: [
             ListView.builder(
               shrinkWrap: true,
@@ -53,6 +53,7 @@ class _OrderPageState extends State<OrderPage> {
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.green.shade900,
+                    foregroundColor: Colors.white,
                   ),
                   onPressed: () {
                     showDialog(
