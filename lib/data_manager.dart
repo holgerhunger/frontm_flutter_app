@@ -1,8 +1,38 @@
+import 'dart:convert';
+
+import 'package:http/http.dart' as http;
+
 import 'data_model.dart';
 
 class DataManager {
   List<Category>? _menu;
   List<ItemInCart> cart = [];
+
+  Future<void> fetchMenu() async {
+    try {
+      const url = 'https://firtman.github.io/coffeemasters/api/menu.json';
+      var response = await http.get(Uri.parse(url));
+
+      if (response.statusCode == 200) {
+        _menu = [];
+        var decodedData = jsonDecode(response.body) as List<dynamic>;
+        for (var json in decodedData) {
+          _menu?.add(Category.fromJson(json));
+        }
+      } else {
+        throw Exception("Error loading data");
+      }
+    } catch (e) {
+      throw Exception("Error loading data");
+    }
+  }
+
+  Future<List<Category>> getMenu() async {
+    if (_menu == null) {
+      await fetchMenu();
+    }
+    return _menu!;
+  }
 
   void cartAdd(Product p) {
     bool found = false;
